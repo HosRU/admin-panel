@@ -4,7 +4,6 @@ const addGameController = async (req, res) => {
     req.isNew = !Boolean(req.games.find(item => item.title === req.body.title));
     // Если игра, которую хотим добавить, новая (её не было в списке)
     if (req.isNew) {
-        // Добавляем объект с данными о новой игре
         const inArray = req.games.map(item => Number(item.id));
         let maximalId;
         if (inArray.length > 0) {
