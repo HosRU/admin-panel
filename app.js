@@ -1,7 +1,10 @@
 const express = require("express");
 const path = require('path');
 const app = express();
+const cors = require("./middlewares/cors");
 const PORT = 3000;
+
+// Основное
 
 const mainRoute = require('./routes/main');
 const gamesRouter = require('./routes/games'); 

@@ -4,7 +4,6 @@ const addGameController = async (req, res) => {
     req.isNew = !Boolean(req.games.find(item => item.title === req.body.title));
     // Если игра, которую хотим добавить, новая (её не было в списке)
     if (req.isNew) {
-        // Добавляем объект с данными о новой игре
         const inArray = req.games.map(item => Number(item.id));
         let maximalId;
         if (inArray.length > 0) {
@@ -27,7 +26,7 @@ const addGameController = async (req, res) => {
         return
     }
     // Записываем обновлённый список игр в файл
-    await writeData("./data/games.json", req.games);
+    await writeData("./utils/data/games.json", req.games);
     // В качестве ответа отправляем объект с двумя полями
     res.send({
         games: req.games, // Обновлённый список со всеми играми
@@ -46,7 +45,7 @@ const deleteGame = async (req, res) => {
     const index = req.games.findIndex((item) => item.id === req.game.id);
     req.games.splice(index, 1);
 
-    await writeData("./data/games.json", req.games);
+    await writeData("./utils/data/games.json", req.games);
     res.send({
         games: req.games,
         updated: req.game
