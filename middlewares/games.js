@@ -1,7 +1,7 @@
 const { readData } = require("../utils/data"); 
 
-const getAllGames = async () => {
-    const games = await readData("./data/games.json");
+const getAllGames = async (req, res, next) => {
+    const games = await readData("./utils/data/games.json");
     if (!games) {
         res.status(400);
         res.send({

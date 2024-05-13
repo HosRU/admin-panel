@@ -26,7 +26,7 @@ const addGameController = async (req, res) => {
         return
     }
     // Записываем обновлённый список игр в файл
-    await writeData("./data/games.json", req.games);
+    await writeData("./utils/data/games.json", req.games);
     // В качестве ответа отправляем объект с двумя полями
     res.send({
         games: req.games, // Обновлённый список со всеми играми
@@ -45,7 +45,7 @@ const deleteGame = async (req, res) => {
     const index = req.games.findIndex((item) => item.id === req.game.id);
     req.games.splice(index, 1);
 
-    await writeData("./data/games.json", req.games);
+    await writeData("./utils/data/games.json", req.games);
     res.send({
         games: req.games,
         updated: req.game
